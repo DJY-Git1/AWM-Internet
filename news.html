@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <script>fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{if(d.region_code=='JL'){document.body.innerHTML='<h1>您所在地区无法访问，就是可怜了Oganesson</h1>';document.head.innerHTML=''}})</script>
+        <title>NB新闻</title>
+    </head>
+    <body>
+        <h1>新闻</h1>
+        <hr>
+        <p>1. 我的官网新加了许多<span onclick="my()">彩蛋</span></p>
+        <p>2. 天气瞎报变成春转夏版本，五一后改为夏季版本</p>
+        <p>3. Vial复活又注销了，默哀</p>
+        <p>4. NB圈惊现薛定谔的Vial网站，大家可以去探索，我有56万兆币（真没吹）</p>
+        <p>4. 没有</p>
+        <div>
+            <a href="index.html">
+                <button>返回</button>
+            </a>
+        </div>
+        <style>
+            * {
+                text-shadow: 2px 2px #aaaaaa;
+                font-family:"Microsoft YaHei" , sans-serif;
+            }
+            h1,p,div {
+                text-align:center;
+                color:white;
+            }
+            body {
+                background:#3498db;
+            }
+            hr {
+                color:#3498db;
+            }
+            button {
+                border-radius:6px;
+                padding: 10px 20px;
+                border:none;
+                text-shadow:none;
+            }
+        </style>
+        <script>
+            function my(){
+                alert("这其实就是个彩蛋！")
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 让主屏幕打开变成全屏 App 模式（隐藏浏览器栏） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 顶部状态栏正常显示（时间、电量、信号）→ 这就是你要的！ -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- 主屏幕显示的名字 -->
+    <meta name="apple-mobile-web-app-title" content="AWM官网">
+        <title>410</title>
+        <script>fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{if(d.region_code=='JL'){document.body.innerHTML='<h1>您所在地区无法访问</h1>';document.head.innerHTML=''}})</script>
+    </head>
+    <body>
+        <h1>410 Gone</h1>
+        <p>No any pages named 'point.html',click the button back to 'index.html'</p>
+        <div>
+            <a href="index.html">
+                <button>back to index</button>
+            </a>
+        </div>
+        <style>
+            h1,p,div {
+                text-align:center;
+            }
+            body {
+                background:#3498db;
+            }
+            * {
+                font-family:"Microsoft YaHei" , sans-serif;
+            }
+            button {
+                border:none;
+                padding:10px 20px;
+                border-radius:6px;
+            }
+        </style>
+    </body>
+</html>

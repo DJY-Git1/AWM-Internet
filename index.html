@@ -1,0 +1,263 @@
+<!-- 
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <!-- 浏览器标签小图标 -->
+    <link rel="icon" type="image/png" href="https://i.imgs.ovh/2026/01/29/yMV4vt.jpeg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script>fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{if(d.region_code=='JL'){document.body.innerHTML='<h1>您所在地区无法访问</h1>';document.head.innerHTML=''}})</script>
+    <title>AWM官网</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background: #3498db; /* 恢复原版蓝色背景 */
+            padding: 20px 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 80px; /* 给置顶菜单留空间 */
+        }
+        /* 置顶菜单样式 */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(52,152,219,0.95);
+            z-index: 999;
+            padding: 12px 0;
+            border-bottom: 2px solid #fff;
+            text-align: center;
+        }
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 12px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .top-nav a:hover {
+            background: #fff;
+            color: #3498db;
+        }
+        h1 {
+            text-align: center;
+            color: #fff; /* 文字改白色更醒目 */
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        #jpg {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .intro {
+            text-align: center;
+            color: #fff; /* 文字改白色更醒目 */
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 30px;
+            padding: 0 10px;
+            text-shadow: 2px 2px #aaaaaa;
+        }
+        .text {
+            text-align: center;
+            border: 2px solid #fff; /* 边框改白色 */
+            border-radius: 10px;
+            padding: 25px 15px;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.1); /* 浅白透明模块底 */
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .text:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+        .text p {
+            font-size: 18px;
+            color: #fff; /* 文字改白色 */
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #fff;
+            color: #3498db; /* 按钮字蓝底白 */
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #f5f5f5;
+            transform: scale(1.05);
+        }
+        .nav-link {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.3); /* 分割线白透明 */
+        }
+        .nav-link a {
+            display: inline-block;
+            margin: 0 10px 10px;
+            color: #fff; /* 链接白色 */
+            text-decoration: none;
+            font-size: 16px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .nav-link a:hover {
+            background: #fff;
+            color: #3498db; /* hover反色 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 置顶菜单：Vial兑换码生成器、天气瞎报、更新日志 -->
+    <div class="top-nav">
+        <a href="point.html">Vial兑换码生成器</a>
+        <a href="weather.html">天气瞎报</a>
+        <a href="log.html">更新日志</a>
+        <a href="news.html">新闻</a>
+        <a href="about.html">关于</a>
+    </div>
+
+    <h1 onclick="my()">AWM官网</h1>
+    <div id="jpg">
+        <img src="https://i.imgs.ovh/2026/01/29/yMV4vt.jpeg" alt="AWM.jpeg" border="0">
+    </div>
+    <div class="intro">
+        <p id="userName"></p>
+        <p>AWM公司，全名Aluminum Washing Machine，是一个在NB圈发展的公司，虽然到现在市值都没有破过200，</p>
+        <p>但在NB圈也算是古老的公司了，经历了很多风风雨雨。因为经济问题差点濒临倒闭，但好歹是硬挺过来</p>
+        <p>了。我们发誓产品绝不造假，AWM公司的代表作是4代洗钉液、洗铝机和洗铝液。</p>
+        <p>因为是官网所以我并不打算搞什么花样</p>
+        <p>提示：该网站已变为<a href="read.html">中心化网站</a></p>
+    </div>
+    <div class="text">
+        <p>洗铝机</p>
+        <a href="https://www.bilibili.com/video/BV1u5u4zcErC/?spm_id_from=333.1387.upload.video_card.click" target="_blank">
+            <button>查看洗铝机视频</button>
+        </a>
+    </div>
+    <div class="text">
+        <p>四代洗钉液</p>
+        <a href="https://www.bilibili.com/video/BV1VFuwzeEJG/?spm_id_from=333.1387.upload.video_card.click" target="_blank">
+            <button>查看4代洗钉液视频</button>
+        </a>
+    </div>
+    <div class="text">
+        <p>制氢粉和制氧粉</p>
+        <a href="https://www.bilibili.com/video/BV1AHbWztEAd/?spm_id_from=333.1387.upload.video_card.click" target="_blank">
+            <button>查看视频</button>
+        </a>
+    </div>
+    <div class="text">
+        <p>NB计算机</p>
+        <a href="https://www.bilibili.com/video/BV1E8zZBxEc7/?spm_id_from=333.1387.upload.video_card.click" target="_blank">
+            <button>查看视频</button>
+        </a>
+    </div>
+    <div class="text">
+        <p>5秒化钉机</p>
+        <a href="https://share-huaxue.nobook.com/index.html?sharedata=eyJ1c2VySWQiOjExOTYyMzIwLCJpZCI6IjBlOTNkZTc2MGZkOTVjMDQ0NThlNWNjOGI5ODUyZTUyIn0">
+            <button>点击体验</button>
+        </a>
+        <a href="化钉机.nbc" download>
+            <button>点击下载</button>
+        </a>
+    </div>
+    <div class="text">
+        <p>好吃美味的黑面包</p>
+        <a href='https://share-huaxue.nobook.com/index.html?sharedata=eyJ1c2VySWQiOjExOTYyMzIwLCJpZCI6Ijk1MmZlYmI1MTBjMGIwZjQzYTE0OGQ4ZDFmNWVkODYzIn0'>
+            <button>点击体验</button>
+        </a>
+        <a href="黑面包.nbc" download>
+            <button>点击下载</button>
+        </a>
+    </div>
+    <div class="text">
+        <p>美味白面包，牛奶味的</p>
+        <a href="https://share-huaxue.nobook.com/index.html?sharedata=eyJ1c2VySWQiOjExOTYyMzIwLCJpZCI6ImQ5ZWM0MzBjODI0OWMxN2EyNWYwMWVjY2YyMDFkMzVhIn0">
+            <button>点击体验</button>
+        </a>
+        <a href="白面包.nbc" download>
+            <button>点击下载</button>
+        </a>
+    </div>
+    <div class="text">
+        <p>钠多炸的爽，适合放松情绪的时候用</p>
+        <a href="https://share-huaxue.nobook.com/index.html?sharedata=eyJ1c2VySWQiOjExOTYyMzIwLCJpZCI6ImQxMGU5OTYxMDdjMDAzYWFjNGRkZjRmOWExZTZmZDEwIn0">
+            <button>点击体验</button>
+        </a>
+        <a href="加钠.nbc" download>
+            <button>点击下载</button>
+        </a>
+    </div>
+    <div class="text">
+        <p>不松手就不炸的氢氟炸弹</p>
+        <a href="https://share-huaxue.nobook.com/index.html?sharedata=eyJ1c2VySWQiOjExOTYyMzIwLCJpZCI6ImZmNWNhY2NjOWZhNmU3MTZjMzI4NjE2NjcyMzY0ZjRjIn0">
+            <button>点击体验</button>
+        </a>
+        <a href="氢氟炸弹.nbc" download>
+            <button>点击下载</button>
+        </a>
+    </div>
+    <div class="text">
+        <p>银钉批量生产线，这下可赚大发了</p>
+        <a href="https://s.nobook.com/index.html?id=301105">
+            <button>点击体验</button>
+        </a>
+        <a href="银钉批量生产线.nbc" download>
+            <button>点击下载</button>
+        </a>
+    </div>
+    <br>
+    <div style="text-align:center">
+    <b>
+        <a href="https://b23.tv/oCy8HlA">
+            <button>关注NB实验室1号</button>
+        </a>
+    </b>
+    </div>
+    <div class="nav-link">
+        <p>友商推荐：</p>
+        <a href="https://nb-qx.top" target="_blank">齐喜的网站</a>
+        <a href="http://vial.uuk.pp.ua" target="_blank">Vial网站存档</a>
+        <a href="https://yoyo-user-awa.github.io/UCTS/" target="_blank">UCTS的网站</a>
+        <a href="https://fafat.uuk.pp.ua" target="_blank">Fafat的网站</a>
+        <a href="https://nb-utw.pages.dev" target="_blank">Utw的网站国际版</a>
+        <a href="https://45d.cn/Utw">Utw的网站国内版</a>
+        <a href="https://nb-channel.top/" target="_blank">NB频道</a>
+        <a href="https://fafat.uuk.pp.ua/awm.html" target="_blank">AWM网站存档</a>
+    </div>
+    <script>
+        function my(){
+            alert("你知道吗？我原本只是想做个比齐喜更好的天气瞎报")
+        }
+    </script>
+</body>
+</html>

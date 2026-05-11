@@ -1,0 +1,146 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <script>fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{if(d.region_code=='JL'){document.body.innerHTML='<h1>您所在地区无法访问</h1>';document.head.innerHTML=''}})</script>
+        <title>更新日志</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Microsoft YaHei", sans-serif;
+            }
+            body {
+                background: #3498db;
+                padding: 20px 10px;
+                max-width: 700px;
+                margin: 0 auto;
+                padding-top: 70px; /* 给置顶返回留空间 */
+            }
+            /* 置顶返回主页 */
+            .top-back {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: rgba(52,152,219,0.95);
+                z-index: 999;
+                padding: 10px 0;
+                border-bottom: 2px solid #fff;
+                text-align: center;
+            }
+            .top-back a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 6px 20px;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
+            .top-back a:hover {
+                background: #fff;
+                color: #3498db;
+            }
+            h1 {
+                text-align:center;
+                color: #fff;
+                font-size: 30px;
+                margin-bottom: 35px;
+                font-weight: 700;
+            }
+            h2 {
+                text-align:center;
+                color: #fff;
+                font-size: 18px;
+                margin: 12px 0;
+                padding: 10px 15px;
+                border-radius: 8px;
+                background: rgba(255,255,255,0.1);
+                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+            }
+            h2:hover {
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                transform: translateY(-2px);
+            }
+            .new {
+                background: #fff304;
+                color: #333;
+                font-weight: 600;
+                border: 2px solid #fff;
+            }
+            .back-btn {
+                text-align: center;
+                margin-top: 40px;
+                display: none; /* 隐藏原返回按钮 */
+            }
+            .back-btn button {
+                padding: 10px 25px;
+                background: #fff;
+                color: #3498db;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .back-btn button:hover {
+                background: #f5f5f5;
+                transform: scale(1.05);
+            }
+        </style>
+    </head>
+    <body onclick="my()">
+        <!-- 置顶返回主页 -->
+        <div class="top-back">
+            <a href="index.html">返回主页</a>
+        </div>
+
+        <h1>AWM更新日志</h1>
+        <br>
+        <h2>v0.4.6: 天气瞎报改为夏季版本，齐喜似乎蒸发了，喝杯七喜就好了</h2>
+        <h2>v0.4.5: 天气瞎报改为春转夏版本，彩蛋不打算删除了，能跑就别动</h2>
+        <h2>v0.4.4<s>无</s>彩蛋版本: 加了亿点彩蛋，4月20号可能会删除</h2>
+        <h2>v0.4.4: Fafat帮我做的存档加进去了，以后有新版本我都会及时说的</h2>
+        <h2>v0.4.3: Fafat说登录功能太烦了所以给删了，以后再也不用登陆了</h2>
+        <h2>v0.4.2: 加了个下载功能，不过是json文件要自己改一下后缀</h2>
+        <h2>v0.4.1: AWM网站不再支持Vial兑换码功能，Utw网站分了国际版和国内版</h2>
+        <h2 class="new">v0.4</h2>
+        <h2>v0.3.10: 改了亿点bug，不用担心up，就亿点而已</h2>
+        <h2>v0.3.9: 加了个登陆功能，就是bug有亿点多，用起来难受的可以回去<a href="https://58a7188b.pinit.eth.limo/index.html" target="_blank">旧网站</a></h2>
+        <h2>v0.3.8: 也是加了本人的主页了，希望能增加点粉丝量（高兴的up）</h2>
+        <h2>v0.3.7: 兑换码机制改成password，增加了安全性</h2>
+        <h2>v0.3.6: Utw把网站网站改了，还得我还得改qwq</h2>
+        <h2>v0.3.5: 天气瞎报加了作死市</h2>
+        <h2>v0.3.4: 添加了新闻页面</h2>
+        <h2>v0.3.3: 部分字体加了阴影</h2>
+        <h2>v0.3.2: 关于页面改了字体</h2>
+        <h2>v0.3.1: 天气瞎报改为春季版本，主页和其他页面部分重写</h2>
+        <h2 class="new">v0.3</h2>
+        <h2>v0.2.7: 增加了关于页面</h2>
+        <h2>v0.2.6: 把跳转链接置顶，增加了新年倒计时，还把更新日志的样式重写了</h2>
+        <h2>v0.2.5: 把下面的链接调整了一下</h2>
+        <h2>v0.2.4: 加了一些免费体验</h2>
+        <h2>v0.2.3: 增加了更新日志</h2>
+        <h2>v0.2.2: Vial兑换码机制改为localStorage，再也不怕兑换码重复了</h2>
+        <h2>v0.2.1: 在UVS的请求下用AI把样式重写了一遍，但内容还是我写</h2>
+        <h2 class="new">v0.2</h2>
+        <h2>v0.1.4: 添加了4y公司，但up词穷了所以没整评语</h2>
+        <h2>v0.1.3: 添加了Eug，up本人很震惊居然没倒闭</h2>
+        <h2>v0.1.2: 天气瞎报改了点bug</h2>
+        <h2>v0.1.1: AWM官网成立</h2>
+        <h2 class="new">v0.1</h2>
+        <div class="back-btn">
+            <a href="index.html">
+                <button>返回主页</button>
+            </a>
+        </div>
+        <script>
+            alert("Mn评论只有自己能看见！")
+        </script>
+    </body>
+</html>

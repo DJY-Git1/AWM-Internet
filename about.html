@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <script>fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{if(d.region_code=='JL'){document.body.innerHTML='<h1>您所在地区无法访问</h1>';document.head.innerHTML=''}})</script>
+        <title>关于</title>
+    </head>
+    <body>
+        <h1 style="text-align:center">关于</h1>
+        <hr style="color:#3498db">
+        <div>
+            <img src="https://i.imgs.ovh/2026/01/29/yMV4vt.jpeg" alt="AWM.jpeg" border="0">
+        </div>
+        <p>AWM官网</p>
+        <p>当前版本号：v0.4.6</p>
+        <hr style="color:#3498db">
+        <p>AWM官网由标准HTML5,CSS3和JavaScript编写</p>
+        <p>部分样式由AI编写</p>
+        <div>
+            <a href="index.html">
+                <button id="no-shadow">返不回</button>
+            </a>
+        </div>
+        <style>
+            * {
+                text-shadow: 2px 2px #aaaaaa;
+            }
+            #no-shadow {
+                text-shadow:none;
+            }
+            body {
+                background:#3498db;
+                color:white;
+            }
+            div,p {
+                text-align:center;
+            }
+            img {
+                width:200px;
+                height:200px;
+            }
+            button {
+                border-radius: 8px; 
+                border: none; 
+                padding: 10px 20px;
+            }
+            * {
+                font-family:"Microsoft YaHei" , sans-serif;
+            }
+        </style>
+    </body>
+</html>

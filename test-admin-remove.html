@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>remove localStorage</title>
+        <script>fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{if(d.region_code=='JL'){document.body.innerHTML='<h1>您所在地区无法访问</h1>';document.head.innerHTML=''}})</script>
+    </head>
+    <body>
+        <h1 onclick="my()">是否删除存属数据</h1>
+        <style>
+            h1 {
+                text-align: center;
+            }
+            body {
+                background: #3498db;
+            }
+        </style>
+        <script>
+            function my(){
+                localStorage.clear()
+                alert("数据已删除")
+            }
+        </script>
+    </body>
+</html>

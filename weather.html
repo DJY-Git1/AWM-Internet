@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 让主屏幕打开变成全屏 App 模式（隐藏浏览器栏） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 顶部状态栏正常显示（时间、电量、信号）→ 这就是你要的！ -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- 主屏幕显示的名字 -->
+    <meta name="apple-mobile-web-app-title" content="AWM官网">
+    <script>fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{if(d.region_code=='JL'){document.body.innerHTML='<h1>您所在地区无法访问</h1>';document.head.innerHTML=''}})</script>
+    <title>NB天气瞎报</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", sans-serif;
+}
+body {
+    background: #3498db; /* 原版蓝色背景，全屏铺满 */
+    padding: 20px 10px;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0 auto;
+    transition: background 0.3s ease;
+    color: black; /* 全局文字改白色，蓝/黄背景下都醒目 */
+    padding-top: 70px; /* 给置顶返回留空间 */
+}
+/* 置顶返回主页 */
+.top-back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(52,152,219,0.95);
+    z-index: 999;
+    padding: 10px 0;
+    border-bottom: 2px solid #fff;
+    text-align: center;
+}
+.top-back a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 6px 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+.top-back a:hover {
+    background: #fff;
+    color: #3498db;
+}
+h1 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+h2 {
+    text-align: center;
+    font-size: 20px;
+    margin: 20px 0 10px;
+    font-weight: 500;
+}
+p {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+}
+/* 过年倒计时样式 */
+.count-box{
+    text-align:center;
+    font-size:18px;
+    margin:10px 0;
+    font-weight:bold;
+}
+.jpg {
+    text-align: center;
+    margin: 15px 0;
+}
+.jpg img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    margin: 0 auto;
+}
+.jpg button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: #fff;
+    color: #3498db;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.jpg button:hover {
+    background: #f5f5f5;
+}
+hr {
+    border: none;
+    height: 1px;
+    background: rgba(255,255,255,0.3); /* 分割线白色透明，更协调 */
+    margin: 20px 0;
+    border-radius: 1px;
+}
+.weather-item {
+    margin: 10px 0;
+    padding: 8px 0;
+}
+.friend-link {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255,255,255,0.3);
+}
+.friend-link a {
+    color: blue; /* 链接白色 */
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0 5px;
+    transition: color 0.3s ease;
+}
+.friend-link a:hover {
+    color: blue; /* 悬浮浅白 */
+    text-decoration: underline;
+}
+.back-home {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    display: none; /* 隐藏原返回按钮 */
+}
+.back-home a {
+    color: blue;
+    text-decoration: none;
+}
+/* 适配U星/柠檬市等特殊图片 */
+.jpg img[src*="yWsJu9"] {
+    height: 300px;
+    width: auto;
+    max-width: 90%;
+}
+.jpg img[src*="yW6ARQ"] {
+    width: 220px;
+    height: 180px;
+}
+    </style>
+</head>
+<body>
+    <!-- 置顶返回主页 -->
+    <div class="top-back">
+        <a href="index.html">返回主页</a>
+    </div>
+
+    <h1>NB天气瞎报</h1>
+    <h1 id="time"></h1>
+    <!-- 过年倒计时 -->
+    <div class="count-box" id="newYear"></div>
+    <div class="jpg">
+        <img src="https://i.imgs.ovh/2026/01/29/yMV4vt.jpeg" alt="AWM.jpeg" border="0" />
+        <button onclick="my()">换背景</button>
+    </div>
+    <hr>
+    <h2>AWM市</h2>
+    <div class="weather-item">
+        <p id="awm1"></p>
+        <p id="awm2"></p>
+        <p id="awm3"></p>
+    </div>
+    <p>温度适宜刚刚好，空气质量我最好</p>
+    <hr>
+    <h2>U星</h2>
+    <div class="jpg">
+        <img src="https://i.imgs.ovh/2026/02/01/yWsJu9.jpeg" alt="yWsJu9.jpeg" border="0" />
+    </div>
+    <p>由于内容来自遥远的U星，所以可能不准</p>
+    <div class="weather-item">
+        <p id="U1"></p>
+        <p id="U2"></p>
+        <p id="U3"></p>
+    </div>
+    <p>温度开始上升，市值直线飙升</p>
+    <hr>
+    <h2>GC3市</h2>
+    <div class="weather-item">
+        <p id="gc1"></p>
+        <p id="gc2"></p>
+        <p id="gc3"></p>
+    </div>
+        <p>产品做到疯狂，心态一点不狂</p>
+        <hr>
+        <h2>Fafat市</h2>
+        <div class="weather-item">
+            <p id="fat1"></p>
+            <p id="fat2"></p>
+            <p id="fat3"></p>
+        </div>
+        <p>网站产品两双全，谁家公司有我全</p>
+        <hr>
+        <h2>Eng市</h2>
+        <div class="weather-item">
+            <p id="eug1"></p>
+            <p id="eug2"></p>
+            <p id="eug3"></p>
+        </div>
+        <p>千年屹立不倒，哪位比我更好？</p>
+        <hr>
+        <h2>Vial市</h2>
+        <div class="weather-item">
+            <p id="vial1"></p>
+            <p id="vial2"></p>
+            <p id="vial3"></p>
+        </div>
+        <p>公司开始解冻，产品不怕硬控</p>
+        <hr>
+        <h2>4y公司</h2>
+        <div class="weather-item">
+            <p id="y1"></p>
+            <p id="y2"></p>
+            <p id="y3"></p>
+        </div>
+        <p>努力一定有回报</p>
+        <hr>
+        <h2>CWMM市</h2>
+        <div class="weather-item">
+            <p id="cwmm1"></p>
+            <p id="cwmm2"></p>
+            <p id="cwmm3"></p>
+        </div>
+        <p>虽然空气提不上号，但是温度真的一绝</p>
+        <hr>
+        <h2>NB作死市</h2>
+        <div class="weather-item">
+            <p id="zs1"></p>
+            <p id="zs2"></p>
+            <p id="zs3"></p>
+        </div>
+        <p>不管了，直接加钠</p>
+        <hr>
+        <h2>UVS市</h2>
+        <div class="weather-item">
+            <p id="uvs1"></p>
+            <p id="uvs2"></p>
+            <p id="uvs3"></p>
+        </div>
+        <p>Welcome to UVS city!</p>
+        <hr>
+        <h2>UWSF市</h2>
+        <div class="weather-item">
+            <p id="hsf1"></p>
+            <p id="hsf2"></p>
+            <p id="hsf3"></p>
+        </div>
+        <p>市值快速生长，公司快速成长</p>
+        <hr>
+        <h2>NB总部</h2>
+        <div class="weather-item">
+            <p id="center1"></p>
+            <p id="center2"></p>
+            <p id="center3"></p>
+        </div>
+        <p>63f320167a9d91191de9826bbbadd00206e92879（哈希加密🔐）</p>
+        <hr>
+        <h2>PTC市</h2>
+        <div class="jpg">
+            <img src="https://i.imgs.ovh/2026/02/01/yW6ARQ.png" alt="PTC.png" border="0" />
+        </div>
+        <div class="weather-item">
+            <p id="ptc1"></p>
+            <p id="ptc2"></p>
+            <p id="ptc3"></p>
+        </div>
+        <p>谁还记得PTC钢管</p>
+        <hr>
+        <h2>5U市</h2>
+        <div class="weather-item">
+            <p id="5u1"></p>
+            <p id="5u2"></p>
+            <p id="5u3"></p>
+        </div>
+        <p>认真最好产品，不要伤到人品</p>
+        <hr>
+        <h2>Lemon市</h2>
+        <div class="jpg">
+            <img src="https://i.imgs.ovh/2026/02/01/yWqenc.png" alt="Lemon.png" border="0" />
+        </div>
+        <div class="weather-item">
+            <p id="lemon1"></p>
+            <p id="lemon2"></p>
+            <p id="lemon3"></p>
+        </div>
+        <p>齐喜正在蒸发，请你稍后询问</p>
+        <hr>
+        <h2>ECC市</h2>
+        <div class="weather-item">
+            <p id="ecc1"></p>
+            <p id="ecc2"></p>
+            <p id="ecc3"></p>
+        </div>
+        <p>虽然产品不王，但是心态不狂</p>
+        <hr>
+        <h2>Ubn市</h2>
+        <div class="weather-item">
+            <p id="ubn1"></p>
+            <p id="ubn2"></p>
+            <p id="ubn3"></p>
+        </div>
+        <p>肥肠抱歉，评语加载失败</p>
+        <hr>
+        <h2>Mn2S7市</h2>
+        <div class="weather-item">
+            <p id="for1"></p>
+            <p id="for2"></p>
+            <p id="for3"></p>
+        </div>
+        <p>应该是第一个没有倒闭还改名的公司了</p>
+        <hr>
+        <h2>CuO公司</h2>
+        <div class="weather-item">
+            <p id="cuo1"></p>
+            <p id="cuo2"></p>
+            <p id="cuo3"></p>
+        </div>
+        <p>要不要看看产品？</p>
+        <hr>
+        <h2>Oganesson市</h2>
+        <div class="jpg">
+            <img src="https://i.imgs.ovh/2026/02/01/yW6Olh.jpeg" alt="yW6Olh.jpeg" border="0" />
+        </div>
+        <div class="weather-item">
+            <p id="og1"></p>
+            <p id="og2"></p>
+            <p id="og3"></p>
+        </div>
+        <p>不炸公司，做好公司</p>
+        <hr>
+        <p>@NB实验室1号</p>
+        <hr>
+        <div class="friend-link">
+            友情链接：
+            <a href="https://vial.orgent.top" target="_blank">Vial股票</a>
+            <a href="https://nailscrubber.netlify.app" target="_blank">齐喜的网站</a>
+            <a href="https://yoyo-user-awa.github.io/UCTS/weather/" target="_blank">UCTS的天气瞎报</a>
+            <a href="https://fafat.uuk.pp.ua" target="_blank">Fafat的网站</a>
+        </div>
+        <div class="back-home">
+            <a href="index.html">返回主页</a>
+        </div>
+    <script>
+        function getid(id){
+            return document.getElementById(id)
+        }
+        function weather(){
+            let a = Math.random()
+            if (a <= 0.3){
+                return "晴"
+            }
+            else if (a <= 0.55){
+                return "多云"
+            }
+            else if (a <= 0.8){
+                return "阴"
+            }
+            else {
+                return "雨"
+            }
+        }
+        let i = 1
+        const body = document.body
+        const hrList = document.querySelectorAll("hr")
+        function my(){
+            i = i + 1
+            if (i % 2 === 0){
+                body.style.background = "#fff3c4" // 原版黄色背景
+                hrList.forEach(hr => hr.style.background = "#e6dbb9")
+            }
+            else {
+                body.style.background = "#3498db" // 原版蓝色背景
+                hrList.forEach(hr => hr.style.background = "#e6e9ed")
+            }
+        }
+        const time = getid("time")
+        const newYear = getid("newYear")
+        const AWM1 = getid("awm1")
+        const AWM2 = getid("awm2")
+        const AWM3 = getid("awm3")
+        const U1 = getid("U1")
+        const U2 = getid("U2")
+        const U3 = getid("U3")
+        const GC31 = getid("gc1")
+        const GC32 = getid("gc2")
+        const GC33 = getid("gc3")
+        const Vial1 = getid("vial1")
+        const Vial2 = getid("vial2")
+        const Vial3 = getid("vial3")
+        const CWMM1 = getid("cwmm1")
+        const CWMM2 = getid("cwmm2")
+        const CWMM3 = getid("cwmm3")
+        const UVS1 = getid("uvs1")
+        const UVS2 = getid("uvs2")
+        const UVS3 = getid("uvs3")
+        const HSF1 = getid("hsf1")
+        const HSF2 = getid("hsf2")
+        const HSF3 = getid("hsf3")
+        const center1 = getid("center1")
+        const center2 = getid("center2")
+        const center3 = getid("center3")
+        const PTC1 = getid("ptc1")
+        const PTC2 = getid("ptc2")
+        const PTC3 = getid("ptc3")
+        const _5U1 = getid("5u1")
+        const _5U2 = getid("5u2")
+        const _5U3 = getid("5u3")
+        const Lemon1 = getid("lemon1")
+        const Lemon2 = getid("lemon2")
+        const Lemon3 = getid("lemon3")
+        const ECC1 = getid("ecc1")
+        const ECC2 = getid("ecc2")
+        const ECC3 = getid("ecc3")
+        const Ubn1 = getid("ubn1")
+        const Ubn2 = getid("ubn2")
+        const Ubn3 = getid("ubn3")
+        const FOREST1 = getid("for1")
+        const FOREST2 = getid("for2")
+        const FOREST3 = getid("for3")
+        const CuO1 = getid("cuo1")
+        const CuO2 = getid("cuo2")
+        const CuO3 = getid("cuo3")
+        const Og1 = getid("og1")
+        const Og2 = getid("og2")
+        const Og3 = getid("og3")
+        const fat1 = getid("fat1")
+        const fat2 = getid("fat2")
+        const fat3 = getid("fat3")
+        const eug1 = getid("eug1")
+        const eug2 = getid("eug2")
+        const eug3 = getid("eug3")
+        const y1 = getid("y1")
+        const y2 = getid("y2")
+        const y3 = getid("y3")
+        const zs1 = getid("zs1")
+        const zs2 = getid("zs2")
+        const zs3 = getid("zs3")
+        
+        AWM1.textContent = weather()
+        U1.textContent = weather()
+        GC31.textContent = weather()
+        Vial1.textContent = weather()
+        CWMM1.textContent = weather()
+        UVS1.textContent = weather()
+        HSF1.textContent = weather()
+        center1.textContent = weather()
+        PTC1.textContent = weather()
+        _5U1.textContent = weather()
+        Lemon1.textContent = weather()
+        ECC1.textContent = weather()
+        Ubn1.textContent = weather()
+        FOREST1.textContent = weather()
+        CuO1.textContent = weather()
+        Og1.textContent = weather()
+        fat1.textContent = weather()
+        eug1.textContent = weather()
+        y1.textContent = weather()
+        zs1.textContent = weather()
+        
+        // 实时时间
+        const f = () => {
+            time.textContent = new Date().toLocaleString()
+            setTimeout(f,1000)
+        };f()
+        
+        // 过年倒计时 2026-02-17
+        function countNewYear(){
+            const target = new Date('2026-07-04T00:00:00+08:00')
+            const now = new Date()
+            const diff = target - now
+            if(diff <= 0){
+                newYear.textContent = "暑假快乐！"
+                return
+            }
+            const day = Math.floor(diff / (1000*60*60*24))
+            const hour = Math.floor((diff % (1000*60*60*24)) / (1000*60*60))
+            const min = Math.floor((diff % (1000*60*60)) / (1000*60))
+            const sec = Math.floor((diff % (1000*60)) / 1000)
+            newYear.textContent = `🧨 距离暑假还有 ${day}天 ${hour}时 ${min}分 ${sec}秒`
+            setTimeout(countNewYear,1000)
+        }
+        countNewYear()
+        
+        const f1 = () => {
+            const now = new Date()
+            const time1 = new Date(now)
+            time1.setHours(12,0,0)
+            if (time1 < now) time1.setDate(time1.getDate() + 1)
+            setTimeout(() => {
+                AWM1.textContent = weather()
+                U1.textContent = weather()
+                GC31.textContent = weather()
+                Vial1.textContent = weather()
+                CWMM1.textContent = weather()
+                UVS1.textContent = weather()
+                HSF1.textContent = weather()
+                center1.textContent = weather()
+                PTC1.textContent = weather()
+                _5U1.textContent = weather()
+                Lemon1.textContent = weather()
+                ECC1.textContent = weather()
+                Ubn1.textContent = weather()
+                FOREST1.textContent = weather()
+                CuO1.textContent = weather()
+                Og1.textContent = weather()
+                fat1.textContent = weather()
+                eug1.textContent = weather()
+                y1.textContent = weather()
+                zs1.textContent = weather()
+            },time1-now);f1()
+        }
+        const f2 = () => {
+            AWM2.textContent = Math.round((Math.random() * 5 + 25) * 100) / 100 + "°C"
+            AWM3.textContent = "AQI:" + Math.round(Math.random() * 10 + 20)
+            U2.textContent = Math.round((Math.random() * 8 + 22) * 100) / 100 + "°C"
+            U3.textContent = "AQI:" + Math.round(Math.random() * 15 + 20)
+            GC32.textContent = Math.round((Math.random() * 7 + 19) * 100) / 100 + "°C"
+            GC33.textContent = "AQI:" + Math.round(Math.random() * 10 + 20)
+            Vial2.textContent = Math.round((Math.random() * 6 + 23) * 100) / 100 + "°C"
+            Vial3.textContent = "AQI:" + Math.round(Math.random() * 10 + 40)
+            CWMM2.textContent = Math.round((Math.random() * 7 + 20) * 100) / 100 + "°C"
+            CWMM3.textContent = "AQI:" + Math.round(Math.random() * 10 + 50)
+            UVS2.textContent = Math.round((Math.random() * 5 + 24) * 100) / 100 + "°C"
+            UVS3.textContent = "AQI:" + Math.round(Math.random() * 10 + 20)
+            HSF2.textContent = Math.round((Math.random() * 10 + 19) * 100) / 100 + "°C"
+            HSF3.textContent = "AQI:" + Math.round(Math.random() * 10 + 30)
+            center2.textContent = Math.round((Math.random() * 8 + 25) * 100) / 100 + "°C"
+            center3.textContent = "AQI:" + Math.round(Math.random() * 10 + 20)
+            PTC2.textContent = Math.round((Math.random() * 10 + 18) * 100) / 100 + "°C"
+            PTC3.textContent = "AQI:" + Math.round(Math.random() * 25 + 45)
+            _5U2.textContent = Math.round((Math.random() * 10 + 21) * 100) / 100 + "°C"
+            _5U3.textContent = "AQI:" + Math.round(Math.random() * 10 + 30)
+            Lemon2.textContent = Math.round((Math.random() * 10 + 25) * 100) / 100 + "°C"
+            Lemon3.textContent = "AQI:" + Math.round(Math.random() * 10 + 30)
+            ECC2.textContent = Math.round((Math.random() * 5 + 24) * 100) / 100 + "°C"
+            ECC3.textContent = "AQI:" + Math.round(Math.random() * 22 + 40)
+            Ubn2.textContent = Math.round((Math.random() * 10 + 25) * 100) / 100 + "°C"
+            Ubn3.textContent = "AQI:" + Math.round(Math.random() * 28 + 55)
+            FOREST2.textContent = Math.round((Math.random() * 5 + 20) * 100) / 100 + "°C"
+            FOREST3.textContent = "AQI:" + Math.round(Math.random() * 10 + 20)
+            CuO2.textContent = Math.round((Math.random() * 5 + 25) * 100) / 100 + "°C"
+            CuO3.textContent = "AQI:" + Math.round(Math.random() * 21 + 33)
+            Og2.textContent = Math.round((Math.random() * 10 + 20) * 100) / 100 + "°C"
+            Og3.textContent = "AQI:" + Math.round(Math.random() * 10 + 40)
+            fat2.textContent = Math.round((Math.random() * 5 + 26) * 100) / 100 + "°C"
+            fat3.textContent = "AQI:" + Math.round(Math.random() * 15 + 25)
+            eug2.textContent = Math.round((Math.random() * 6 + 20) * 100) / 100 + "°C"
+            eug3.textContent = "AQI:" + Math.round(Math.random() * 10 + 30)
+            y2.textContent = Math.round((Math.random() * 5 + 27) * 100) / 100 + "°C"
+            y3.textContent = "AQI:" + Math.round(Math.random() * 10 + 40)
+            zs2.textContent = Math.round((Math.random() * 10 + 24) * 100) / 100 + "°C"
+            zs3.textContent = "AQI:" + Math.round(Math.random() * 10 + 50)
+            setTimeout(f2,1000)
+        };f2()
+    </script>
+</body>
+</html>
