@@ -255,8 +255,8 @@ Code, Compile, Run and Debug online from anywhere in world.
     </div>
     <br>
     <div style="text-align:center">
-        <p>AWM的三角函数可视化</p>
-        <iframe src="https://www.desmos.com/calculator/7htor5h4yb?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
+        <p id="change2" onclick="change()">AWM的三角函数可视化</p>
+        <div id="site"><iframe src="https://www.desmos.com/calculator/7htor5h4yb?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe></div>
     </div>
     <div style="text-align:center">
     <b>
@@ -280,6 +280,11 @@ Code, Compile, Run and Debug online from anywhere in world.
         function my(){
             alert("你知道吗？我原本只是想做个比齐喜更好的天气瞎报")
         }
+        function change(){
+            let site = document.getElementById("site")
+            let change2 = document.getElementById("change2")
+            site.innnerHTML = "<iframe src='https://nbchannel.pythonanywhere.com/Beta/index-Beta' width='640px' height='400px'></iframe>"
+            change2.textContent = "NB频道的Beta版网站"
     </script>
 </body>
 </html>
