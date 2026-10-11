@@ -8,7 +8,7 @@
         <title>NB新闻</title>
     </head>
     <body>
-        <div id="tip" style="background:white;border:black solid 2px;border-radius:6px;height:25px;text-align:center"></div>
+        <div id="tip" style="background:white;border:black solid 2px;border-radius:6px;height:25px;text-align:center;color:black"></div>
         <h1>新闻</h1>
         <hr>
         <p>1. 我的网站将开始偏向交互性更新</p>
@@ -50,7 +50,7 @@
             }
             const tips = ["现在的橡胶塞可以自己弹开了","用爬虫访问齐喜的网站会403","Utw也有GitHub账号，叫Utw-coding","Orgent一直在退圈、回圈、退圈、再回圈的循环中","笑点解析：NB频道的天气瞎报说天气不瞎报","经实测，GitHub打开的成功率约为50%","NB频道的Beta版网站比普通版更流畅","这句话共有八个字","NB小琪也有网站nbkejixiaoqi.pythonanywhere.com","你猜猜我们有多少tip"] //10
             const tip = document.getElementById("tip")
-            tip.textContent = tips[Math.floor(Math.random())]
+            tip.textContent = tips[Math.floor(Math.random()*10)]
         </script>
     </body>
 </html>
