@@ -477,18 +477,18 @@ hr {
         
         // 过年倒计时 2026-02-17
         function countNewYear(){
-            const target = new Date('2026-10-01T00:00:00+08:00')
+            const target = new Date('2027-02-06T00:00:00+08:00')
             const now = new Date()
             const diff = target - now
             if(diff <= 0){
-                newYear.textContent = "国庆快乐！"
+                newYear.textContent = 新年快乐！"
                 return
             }
             const day = Math.floor(diff / (1000*60*60*24))
             const hour = Math.floor((diff % (1000*60*60*24)) / (1000*60*60))
             const min = Math.floor((diff % (1000*60*60)) / (1000*60))
             const sec = Math.floor((diff % (1000*60)) / 1000)
-            newYear.textContent = `🧨 距离国庆还有 ${day}天 ${hour}时 ${min}分 ${sec}秒`
+            newYear.textContent = `🧨 距离新年还有 ${day}天 ${hour}时 ${min}分 ${sec}秒`
             setTimeout(countNewYear,1000)
         }
         countNewYear()
