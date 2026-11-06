@@ -358,14 +358,17 @@ hr {
         }
         function weather(){
             let a = Math.random()
-            if (a <= 0.3){
+            if (a <= 0.2){
                 return "晴"
             }
-            else if (a <= 0.55){
+            else if (a <= 0.4){
                 return "多云"
             }
-            else if (a <= 0.8){
+            else if (a <= 0.6){
                 return "阴"
+            }
+            else if (a <= 0.8){
+                return "雪"
             }
             else {
                 return "雨"
@@ -522,45 +525,45 @@ hr {
             },time1-now);f1()
         }
         const f2 = () => {
-            AWM2.textContent = Math.round((Math.random() * 5 + 15) * 100) / 100 + "°C"
+            AWM2.textContent = Math.round((Math.random() * 10 - 5) * 100) / 100 + "°C"
             AWM3.textContent = "AQI:" + Math.round(Math.random() * 10 + 15)
-            U2.textContent = Math.round((Math.random() * 8 + 15) * 100) / 100 + "°C"
+            U2.textContent = Math.round((Math.random() * 8 - 4) * 100) / 100 + "°C"
             U3.textContent = "AQI:" + Math.round(Math.random() * 15 + 20)
-            GC32.textContent = Math.round((Math.random() * 7 + 10) * 100) / 100 + "°C"
+            GC32.textContent = Math.round((Math.random() * 7 + 0) * 100) / 100 + "°C"
             GC33.textContent = "AQI:" + Math.round(Math.random() * 10 + 20)
-            Vial2.textContent = Math.round((Math.random() * 6 + 10) * 100) / 100 + "°C"
+            Vial2.textContent = Math.round((Math.random() * 6 - 1) * 100) / 100 + "°C"
             Vial3.textContent = "AQI:" + Math.round(Math.random() * 10 + 40)
-            CWMM2.textContent = Math.round((Math.random() * 7 + 14) * 100) / 100 + "°C"
+            CWMM2.textContent = Math.round((Math.random() * 7 + 1) * 100) / 100 + "°C"
             CWMM3.textContent = "AQI:" + Math.round(Math.random() * 10 + 50)
-            UVS2.textContent = Math.round((Math.random() * 5 + 15) * 100) / 100 + "°C"
-            UVS3.textContent = "AQI:" + Math.round(Math.random() * 10 + 20)
-            HSF2.textContent = Math.round((Math.random() * 10 + 15) * 100) / 100 + "°C"
+            UVS2.textContent = Math.round((Math.random() * 5 - 6) * 100) / 100 + "°C"
+            UVS3.textContent = "AQI:" + Math.round(Math.random() * 10 - 6)
+            HSF2.textContent = Math.round((Math.random() * 10 - 7) * 100) / 100 + "°C"
             HSF3.textContent = "AQI:" + Math.round(Math.random() * 10 + 30)
-            center2.textContent = Math.round((Math.random() * 8 + 18) * 100) / 100 + "°C"
+            center2.textContent = Math.round((Math.random() * 8 - 6) * 100) / 100 + "°C"
             center3.textContent = "AQI:" + Math.round(Math.random() * 10 + 20)
-            PTC2.textContent = Math.round((Math.random() * 10 + 14) * 100) / 100 + "°C"
+            PTC2.textContent = Math.round((Math.random() * 10 + 0) * 100) / 100 + "°C"
             PTC3.textContent = "AQI:" + Math.round(Math.random() * 25 + 45)
-            _5U2.textContent = Math.round((Math.random() * 10 + 13) * 100) / 100 + "°C"
+            _5U2.textContent = Math.round((Math.random() * 10 - 10) * 100) / 100 + "°C"
             _5U3.textContent = "AQI:" + Math.round(Math.random() * 10 + 30)
-            Lemon2.textContent = Math.round((Math.random() * 10 + 15) * 100) / 100 + "°C"
+            Lemon2.textContent = Math.round((Math.random() * 10 - 3) * 100) / 100 + "°C"
             Lemon3.textContent = "AQI:" + Math.round(Math.random() * 10 + 30)
-            ECC2.textContent = Math.round((Math.random() * 5 + 18) * 100) / 100 + "°C"
+            ECC2.textContent = Math.round((Math.random() * 5 + 0) * 100) / 100 + "°C"
             ECC3.textContent = "AQI:" + Math.round(Math.random() * 22 + 40)
-            Ubn2.textContent = Math.round((Math.random() * 10 + 15) * 100) / 100 + "°C"
+            Ubn2.textContent = Math.round((Math.random() * 10 - 9) * 100) / 100 + "°C"
             Ubn3.textContent = "AQI:" + Math.round(Math.random() * 28 + 55)
-            FOREST2.textContent = Math.round((Math.random() * 5 + 15) * 100) / 100 + "°C"
+            FOREST2.textContent = Math.round((Math.random() * 5 - 6) * 100) / 100 + "°C"
             FOREST3.textContent = "AQI:" + Math.round(Math.random() * 10 + 20)
-            CuO2.textContent = Math.round((Math.random() * 5 + 19) * 100) / 100 + "°C"
+            CuO2.textContent = Math.round((Math.random() * 5 - 5) * 100) / 100 + "°C"
             CuO3.textContent = "AQI:" + Math.round(Math.random() * 21 + 33)
-            Og2.textContent = Math.round((Math.random() * 10 + 15) * 100) / 100 + "°C"
+            Og2.textContent = Math.round((Math.random() * 10 - 15) * 100) / 100 + "°C"
             Og3.textContent = "AQI:" + Math.round(Math.random() * 10 + 40)
-            fat2.textContent = Math.round((Math.random() * 5 + 18) * 100) / 100 + "°C"
+            fat2.textContent = Math.round((Math.random() * 5 - 7) * 100) / 100 + "°C"
             fat3.textContent = "AQI:" + Math.round(Math.random() * 15 + 25)
-            eug2.textContent = Math.round((Math.random() * 6 + 16) * 100) / 100 + "°C"
+            eug2.textContent = Math.round((Math.random() * 6 + 0) * 100) / 100 + "°C"
             eug3.textContent = "AQI:" + Math.round(Math.random() * 10 + 30)
-            y2.textContent = Math.round((Math.random() * 5 + 17) * 100) / 100 + "°C"
+            y2.textContent = Math.round((Math.random() * 5 + 1) * 100) / 100 + "°C"
             y3.textContent = "AQI:" + Math.round(Math.random() * 10 + 40)
-            zs2.textContent = Math.round((Math.random() * 10 + 20) * 100) / 100 + "°C"
+            zs2.textContent = Math.round((Math.random() * 10 - 20) * 100) / 100 + "°C"
             zs3.textContent = "AQI:" + Math.round(Math.random() * 10 + 50)
             setTimeout(f2,1000)
         };f2()
